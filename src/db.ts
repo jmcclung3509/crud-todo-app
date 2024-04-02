@@ -6,8 +6,11 @@ const URL = process.env.MONGO_URI;
 console.log(URL)
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 5eb9c76e86cafc85e97463cfabd07524aec0229c
 const connectionParams = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
