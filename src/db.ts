@@ -1,16 +1,19 @@
 const mongoose = require('mongoose');
 import dotenv from 'dotenv';
-dotenv.config();
 
-const URL = process.env.MONGO_URI;
+
+dotenv.config();
+const URL=process.env.MONGO_URL;
+
+
+
 
 const connectionParams = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
 
-mongoose
-  .connect(URL, connectionParams)
+mongoose.connect(URL, connectionParams)
   .then(() => {
     console.log('Connected to database');
   })
@@ -20,4 +23,5 @@ mongoose
 
 
 export const db = mongoose.connection;
+
 
