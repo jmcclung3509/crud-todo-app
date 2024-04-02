@@ -4,8 +4,6 @@ dotenv.config();
 
 const URL = process.env.MONGO_URI;
 
-
-
 const connectionParams = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
