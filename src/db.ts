@@ -1,12 +1,12 @@
-const dotenv = require('dotenv');
-dotenv.config({ path:  '/.env' });
+const mongoose = require('mongoose');
+import dotenv from 'dotenv';
+dotenv.config();
 
-const connection_string = process.env.MONGO_URI;
+const URL = process.env.MONGO_URI;
+console.log(URL)
 
-const mongoose = require('mongoose'); 
 
 
-const url = 'mongodb+srv://jmcclung3509:o3vs1zCyuoYsVzDc@cluster0.do8pzck.mongodb.net/';
 
 const connectionParams = {
   useNewUrlParser: true,
@@ -14,7 +14,7 @@ const connectionParams = {
 };
 
 mongoose
-  .connect(url, connectionParams)
+  .connect(URL, connectionParams)
   .then(() => {
     console.log('Connected to database');
   })

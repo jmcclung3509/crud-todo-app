@@ -1,17 +1,20 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.db = void 0;
-const dotenv = require('dotenv');
-dotenv.config({ path: '/.env' });
-const connection_string = process.env.MONGO_URI;
 const mongoose = require('mongoose');
-const url = 'mongodb+srv://jmcclung3509:o3vs1zCyuoYsVzDc@cluster0.do8pzck.mongodb.net/';
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const URL = process.env.MONGO_URI;
+console.log(URL);
 const connectionParams = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
 mongoose
-    .connect(url, connectionParams)
+    .connect(URL, connectionParams)
     .then(() => {
     console.log('Connected to database');
 })
