@@ -8,7 +8,6 @@ const mongoose = require('mongoose');
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const URL = process.env.MONGO_URI;
-console.log(URL);
 const connectionParams = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
