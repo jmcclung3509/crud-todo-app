@@ -2,9 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createOne = exports.findAll = void 0;
 const todos_model_1 = require("./todos.model");
-const zod_1 = require("zod");
 async function findAll(_req, res, next) {
-    console.log('findAll route handler invoked');
+    console.log("findAll route handler invoked");
     try {
         const result = await todos_model_1.Todos.find();
         const todos = await result.toArray();
@@ -17,20 +16,17 @@ async function findAll(_req, res, next) {
 exports.findAll = findAll;
 async function createOne(req, res, next) {
     try {
-        const validateResult = await todos_model_1.Todo.parse(req.body);
-        const insertResult = await todos_model_1.Todos.insertOne(validateResult);
+        const insertResult = await todos_model_1.Todos.insertOne(req.body);
         if (!insertResult.acknowledged) {
-            throw new Error('Insertion failed');
+            throw new Error("Insertion failed");
         }
+        res.status(201);
         res.json({
             _id: insertResult.insertedId,
-            ...validateResult,
+            ...req.body,
         });
     }
     catch (error) {
-        if (error instanceof zod_1.ZodError) {
-            res.status(422);
-        }
         next(error);
     }
 }

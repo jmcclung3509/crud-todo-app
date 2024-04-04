@@ -14,7 +14,7 @@ export const ParamsWithId = z.object({
         }
       },
       {
-        message: "Invalide ObjectId",
+        message: "Invalid ObjectId",
       }
     ),
 });

@@ -25,8 +25,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const TodoHandlers = __importStar(require("./todos.handlers"));
+const todos_model_1 = require("./todos.model");
+const middlewares_1 = require("../../middlewares");
 const router = (0, express_1.Router)();
-router.get('/', TodoHandlers.findAll);
-router.post('/', TodoHandlers.createOne);
+router.get("/", TodoHandlers.findAll);
+router.post("/", (0, middlewares_1.validateRequest)({
+    body: todos_model_1.Todo,
+}), TodoHandlers.createOne);
 exports.default = router;
 //# sourceMappingURL=todos.routes.js.map

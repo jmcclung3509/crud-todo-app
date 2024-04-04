@@ -1,11 +1,12 @@
 
 import * as z from 'zod';
 import { db } from '../../db';
-import { WithId, Collection} from 'mongodb'; 
+import { WithId} from 'mongodb'; 
 
 // Define your Mongoose schema
 // Define your Zod schema for Todo
 export const Todo = z.object({
+
   content: z.string().min(1),
   done: z.boolean().default(false),
 });

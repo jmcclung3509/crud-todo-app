@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.errorHandler = exports.notFound = void 0;
+exports.validateRequest = exports.errorHandler = exports.notFound = void 0;
+const zod_1 = require("zod");
 function notFound(req, res, next) {
     res.status(404);
     const error = new Error(`🔍 - Not Found - ${req.originalUrl}`);
@@ -17,4 +18,27 @@ function errorHandler(err, req, res, next) {
     });
 }
 exports.errorHandler = errorHandler;
+//validate response
+function validateRequest(validators) {
+    return async (req, res, next) => {
+        try {
+            if (validators.params) {
+                req.params = await validators.params.parseAsync(req.params);
+            }
+            if (validators.query) {
+                req.query = await validators.query.parseAsync(req.query);
+            }
+            if (validators.body) {
+                req.body = await validators.body.parseAsync(req.body);
+            }
+        }
+        catch (error) {
+            if (error instanceof zod_1.ZodError) {
+                res.status(422);
+            }
+            next(error);
+        }
+    };
+}
+exports.validateRequest = validateRequest;
 //# sourceMappingURL=middlewares.js.map

@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-import dotenv from 'dotenv';
+
+require('dotenv').config()
+
+const URL=process.env.URL
 
 
-dotenv.config();
-const URL=process.env.MONGO_URL;
 
 
 

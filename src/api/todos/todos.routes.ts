@@ -23,5 +23,22 @@ router.post(
   }),
   TodoHandlers.createOne
 );
+router.put(
+    '/:id',
+validateRequest({
+    params: ParamsWithId,
+    body: Todo,
+}),
+TodoHandlers.updateOne
+);
+
+router.delete(
+    '/:id',
+    validateRequest({
+        params: ParamsWithId,
+    }),
+    TodoHandlers.deleteOne
+ 
+)
 
 export default router;
